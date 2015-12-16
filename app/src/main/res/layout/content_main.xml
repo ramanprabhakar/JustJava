@@ -47,6 +47,15 @@
             android:text="Chocolate"
             android:textSize="16sp" />
 
+        <CheckBox
+            android:id="@+id/extra_sweet_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:paddingLeft="24dp"
+            android:text="Extra Sweet"
+            android:textSize="16sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

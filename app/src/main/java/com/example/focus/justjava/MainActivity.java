@@ -1,5 +1,6 @@
 package com.example.focus.justjava;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,14 +13,24 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
-    int pricePerCoffee = 5;
+    int pricePerCoffee = 10;
     boolean hasWhippedCream = false;
     boolean hasChocolate = false;
+    boolean hasExtraSweet = false;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     public void submitOrder(View view) {
@@ -45,19 +59,29 @@ public class MainActivity extends AppCompatActivity {
 
         CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
         hasChocolate = chocolateCheckBox.isChecked();
-        displayPrice(calculatePrice(hasWhippedCream, hasChocolate));
+
+        CheckBox extaSweetCheckBox = (CheckBox) findViewById(R.id.extra_sweet_checkbox);
+        hasExtraSweet = extaSweetCheckBox.isChecked();
+
+
+        displayPrice(calculatePrice(hasWhippedCream, hasChocolate, hasExtraSweet));
     }
 
-    private int calculatePrice(boolean whippedCream, boolean chocolate) {
+    private int calculatePrice(boolean whippedCream, boolean chocolate, boolean extraSweet) {
         int addCream = 0;
         int addChocolate = 0;
-        if(whippedCream){
-            addCream = 1;
+        int addSugar = 0;
+        if (whippedCream) {
+            addCream = 2;
         }
-        if(chocolate){
-            addChocolate = 2;
+        if (chocolate) {
+            addChocolate = 3;
         }
-        return (quantity * (pricePerCoffee + addChocolate + addCream));
+
+        if (extraSweet) {
+            addSugar = 1;
+        }
+        return (quantity * (pricePerCoffee + addChocolate + addCream + addSugar));
     }
 
     private void displayQuantity() {
@@ -76,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         String message = "Name: " + CustomerName.getText().toString();
         message = message + "\nAdd Whipped Cream? " + (hasWhippedCream ? "Yes" : "No");
         message = message + "\nAdd Chocolate? " + (hasChocolate ? "Yes" : "No");
+        message = message + "\nAdd Sugar? " + (hasExtraSweet ? "Yes" : "No");
         message = message + "\nQuantity: " + quantity + "\n";
         message = message + ("Total: " + NumberFormat.getCurrencyInstance().format(price) + "\nThank You!");
         return message;
@@ -111,5 +136,45 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.example.focus.justjava/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.example.focus.justjava/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
     }
 }
