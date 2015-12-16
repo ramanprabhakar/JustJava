@@ -21,12 +21,12 @@
             android:hint="Name"
             android:id="@+id/CustomerName"
             android:inputType="textCapWords"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:text="Toppings"
             android:textAllCaps="true" />
 
@@ -34,7 +34,7 @@
             android:id="@+id/whipped_cream_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:paddingLeft="24dp"
             android:text="Whipped Cream"
             android:textSize="16sp" />
@@ -42,7 +42,7 @@
             android:id="@+id/chocolate_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:paddingLeft="24dp"
             android:text="Chocolate"
             android:textSize="16sp" />
@@ -51,7 +51,7 @@
             android:id="@+id/extra_sweet_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:paddingLeft="24dp"
             android:text="Extra Sweet"
             android:textSize="16sp" />
@@ -59,14 +59,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:text="Quantity"
             android:textAllCaps="true" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal">
 
             <Button
@@ -96,7 +96,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:text="Order Summary"
             android:textAllCaps="true" />
 
@@ -104,7 +104,7 @@
             android:id="@+id/orderSummary_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:text="Total: $0"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
