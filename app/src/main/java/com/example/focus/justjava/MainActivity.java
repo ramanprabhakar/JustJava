@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
         hasChocolate = chocolateCheckBox.isChecked();
 
+        // Adding a little extra sugar
         CheckBox extaSweetCheckBox = (CheckBox) findViewById(R.id.extra_sweet_checkbox);
         hasExtraSweet = extaSweetCheckBox.isChecked();
 
